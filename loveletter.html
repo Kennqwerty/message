@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6e6; /* Light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            padding: 50px;
+            border: 2px solid #ff9999; /* Pink border */
+            background-color: #fff; /* White background */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+        }
+
+        .letter-background {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background-image: url('https://image.freepik.com/free-vector/valentine-s-day-letter_23-2148877402.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+            opacity: 0.3; /* Adjust opacity as desired */
+            border-radius: 10px;
+            visibility: hidden; /* Initially hidden */
+        }
+
+        .heart {
+            cursor: pointer;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .heart:hover {
+            transform: scale(1.2);
+        }
+
+        .hidden {
+            opacity: 0;
+            display: none;
+            transform: translateY(-50%) scale(0);
+            transform-origin: top;
+        }
+
+        .visible {
+            animation: revealMessage 0.5s forwards, heartMove 0.5s forwards, heartAppear 0.5s forwards;
+        }
+
+        @keyframes revealMessage {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartMove {
+            0% {
+                transform: translateY(-50%) scale(0);
+            }
+            100% {
+                transform: translateY(50%);
+            }
+        }
+
+        @keyframes heartAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Custom styling for the message */
+        #message {
+            margin-top: 20px;
+            padding: 20px;
+            position: relative; /* Added */
+            top: calc(-50px - 100px); /* Adjust as needed */
+            overflow-y: auto; /* Enable vertical scroll */
+            max-height: 300px; /* Set a max height for the message container */
+        }
+
+        /* Custom styling for the heart icon */
+        .heart img {
+            border-radius: 50%; /* Make the heart icon circular */
+            border: 2px solid #ff4d4d; /* Pink border */
+        }
+
+        /* Custom styling for the love letter */
+        .love-letter {
+            display: none; /* Initially hidden */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            border: 2px solid #ff9999; /* Pink border */
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            z-index: 2; /* Make it appear above other elements */
+        }
+
+        .opened {
+            display: block;
+            animation: openLetter 1s forwards;
+        }
+
+        @keyframes openLetter {
+            0% {
+                transform: translate(-50%, -50%) rotateX(-90deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotateX(0deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="letter-background"></div>
+        <div id="heart" class="heart">
+            <img src="heart.png" alt="Heart Icon" width="100" height="100">
+        </div>
+        <div id="message" class="hidden">
+            
+        </div>
+    </div>
+
+    <div class="love-letter" id="loveLetter">
+        <h2>My Love,</h2>
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+
+        <p>This letter is to express the depth of my feelings for you. You mean the world to me...</p>
+
+        <!-- Add more content here -->
+    </div>
+
+    <script>
+        document.getElementById('heart').addEventListener('click', function() {
+            var message = document.getElementById('message');
+            var background = document.querySelector('.letter-background');
+            var loveLetter = document.getElementById('loveLetter');
+            message.classList.toggle('hidden');
+            message.classList.toggle('visible');
+            background.style.visibility = message.classList.contains('visible') ? 'visible' : 'hidden';
+            loveLetter.classList.toggle('opened');
+        });
+    </script>
+</body>
+</html>
